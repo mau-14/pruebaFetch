@@ -5,8 +5,9 @@ class C_verAlumnos{
 
   async verAlumnos(){
     const verAlumnos = new M_verAlumnos()
-    let alumnos = await verAlumnos.listar()
+    let alumnos = await verAlumnos.listarAlumnos()
     console.log(alumnos)
+
   }
 }
 export default C_verAlumnos

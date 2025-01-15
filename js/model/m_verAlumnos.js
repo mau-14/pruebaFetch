@@ -1,6 +1,6 @@
 class M_verAlumnos {
 
-  async listar(){
+  async listarAlumnos(){
 
     try{
       const response = await fetch('./app/controller/c_verAlumnos.php')
