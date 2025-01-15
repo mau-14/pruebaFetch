@@ -1,7 +1,8 @@
 import C_verAlumnos from './controller/c_verAlumnos.js' 
-       let select = document.getElementById('Curso')
+       let selectCurso = document.getElementById('Curso')
        let div = document.getElementById('Principal')
-       select.addEventListener('change',async (event)=>{
+
+       selectCurso.addEventListener('change',async (event)=>{
          const informacion = new C_verAlumnos()
          let datosAlumnos = await informacion.verAlumnos()
          let datosPruebas = await informacion.verPruebas()
@@ -24,13 +25,23 @@ import C_verAlumnos from './controller/c_verAlumnos.js'
                   const option = document.createElement('option')
                   
                   option.textContent = dato.nombre
-                  option.value = dato.idAlumno
+                  option.value = dato.nombre
                   select.appendChild(option)
               })
               fragment.appendChild(select)
 
+           select.addEventListener('change', (event)=>{
+           })
+
          })
 
          div.appendChild(fragment)
-
+        
        })
+
+         
+         div.appendChild(button)
+
+
+
+    
