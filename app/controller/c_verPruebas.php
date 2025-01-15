@@ -1,14 +1,13 @@
 <?php 
 
 
-
     require_once '../model/m_verAlumnos.php';
-    $listarAlumnos = new M_verAlumnos();
+    $listarPruebas= new M_verAlumnos();
 
 
-    $alumnos = $listarAlumnos->obtenerDatosAlumnos();
-    if($alumnos){
-      echo json_encode($alumnos);
+    $pruebas = $listarPruebas->obtenerPruebas();
+    if($pruebas){
+      echo json_encode($pruebas);
     }else{
       echo json_encode(['mensaje'=>'no se encontraron alumnos, algo anda mal']);
     }

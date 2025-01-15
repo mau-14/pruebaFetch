@@ -16,9 +16,11 @@
     <script type="module">
        import C_verAlumnos from './js/controller/c_verAlumnos.js' 
        let select = document.getElementById('Curso')
+       let div 
        select.addEventListener('change',(event)=>{
-         const alumnos = new C_verAlumnos()
-         alumnos.verAlumnos()
+         const datos = new C_verAlumnos()
+         datos.verAlumnos()
+         datos.verPruebas()
        })
     </script>
   </body>

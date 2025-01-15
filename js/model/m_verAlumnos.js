@@ -10,7 +10,16 @@ class M_verAlumnos {
       console.log(error)
     }
   }
+  async listarPruebas(){
 
+      try{
+        const response = await fetch('./app/controller/c_verPruebas.php')
+        const data = await response.json()
+        return data
+      }catch(error){
+        console.log(error)
+      }
+    }
 }
 
 

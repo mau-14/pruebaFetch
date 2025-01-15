@@ -9,5 +9,12 @@ class C_verAlumnos{
     console.log(alumnos)
 
   }
+
+  async verPruebas(){
+    const verPruebas = new M_verAlumnos()
+    let pruebas = await verPruebas.listarPruebas()
+    console.log(pruebas)
+
+  }
 }
 export default C_verAlumnos

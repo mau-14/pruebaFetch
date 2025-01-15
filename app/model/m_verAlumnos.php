@@ -16,7 +16,7 @@ Class M_verAlumnos {
     }
 
 
-    public function obtenerDatos() {
+    public function obtenerDatosAlumnos() {
       try {
           $sql = 'SELECT * FROM Alumno;';
 
@@ -35,5 +35,26 @@ Class M_verAlumnos {
           echo 'Error al obtener datos: ' . $e->getMessage();
           return [];
     }
-}}
+    }
+   public function obtenerPruebas() {
+        try {
+            $sql = 'SELECT * FROM Prueba;';
+
+            $resultado = $this->conexion->query($sql);
+
+            if ($resultado->num_rows > 0) {
+                $datos = [];
+                while ($fila = $resultado->fetch_assoc()) {
+                    $datos[] = $fila;
+                }
+                return $datos;
+            } else {
+                return []; 
+            }
+        } catch (Exception $e) {
+            echo 'Error al obtener datos: ' . $e->getMessage();
+            return [];
+      }
+     }
+}
 
