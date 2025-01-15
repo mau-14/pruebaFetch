@@ -7,21 +7,13 @@
     <link href="css/style.css" rel="stylesheet">
   </head>
   <body>
-    <div id='principal'>
+    <div id='Principal'>
       <select id='Curso'>
         <option selected disabled>Selecciona un Curso</option>
         <option value='2daw'>2DAW</option>
       </select>
     </div>
-    <script type="module">
-       import C_verAlumnos from './js/controller/c_verAlumnos.js' 
-       let select = document.getElementById('Curso')
-       let div 
-       select.addEventListener('change',(event)=>{
-         const datos = new C_verAlumnos()
-         datos.verAlumnos()
-         datos.verPruebas()
-       })
+    <script type="module" src="js/mainControlador.js">
     </script>
   </body>
 </html>
