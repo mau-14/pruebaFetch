@@ -17,7 +17,7 @@ Class C_verAlumnos{
     if($alumnos){
       echo json_encode($alumnos);
     }else{
-      echo json_encode('mensaje'=>'no se encontraron alumnos, algo anda mal');
+      echo json_encode(['mensaje'=>'no se encontraron alumnos, algo anda mal']);
     }
   }
 
