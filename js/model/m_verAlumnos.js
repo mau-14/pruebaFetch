@@ -3,7 +3,7 @@ class M_verAlumnos {
   async listar(){
 
     try{
-      const response = await fetch('../../app/config/configDb.php')
+      const response = await fetch('./app/controller/c_verAlumnos.php')
       const data = await response.json()
       return data
     }catch(error){

@@ -1,12 +1,12 @@
-import M_verAlumnos from "../model/m_verAlumnos";
+import M_verAlumnos from "../model/m_verAlumnos.js";
 
 class C_verAlumnos{
 
-  constructor(){
+
+  async verAlumnos(){
     const verAlumnos = new M_verAlumnos()
-    let alumnos = verAlumnos.listar()
+    let alumnos = await verAlumnos.listar()
     console.log(alumnos)
   }
 }
-
 export default C_verAlumnos
