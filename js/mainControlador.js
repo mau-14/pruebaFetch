@@ -40,7 +40,6 @@ import C_verAlumnos from './controller/c_verAlumnos.js'
        })
 
          
-         div.appendChild(button)
 
 
 
