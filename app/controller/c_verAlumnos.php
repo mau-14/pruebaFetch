@@ -1,7 +1,5 @@
 <?php 
 
-
-
     require_once '../model/m_verAlumnos.php';
     $listarAlumnos = new M_verAlumnos();
 
