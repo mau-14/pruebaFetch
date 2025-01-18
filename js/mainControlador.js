@@ -15,7 +15,7 @@ selectCurso.addEventListener('change', async () => {
 async function crearSelects(datosAlumnos,datosPruebas) {
     try {
 
-
+        
         div.innerHTML = ''
 
         const fragment = document.createDocumentFragment()
@@ -29,8 +29,7 @@ async function crearSelects(datosAlumnos,datosPruebas) {
             select.id = i++
 
             const optionDefault = document.createElement('option')
-            optionDefault.textContent = 'Selecciona un alumno'
-            optionDefault.disabled = true
+            optionDefault.textContent = 'Ninguno'
             optionDefault.selected = true
             select.appendChild(optionDefault)
           
@@ -43,44 +42,45 @@ async function crearSelects(datosAlumnos,datosPruebas) {
 
             fragment.appendChild(select)
 
-            select.addEventListener('change', (event)=> {
-                const valor = select.value
+            select.addEventListener('change', ()=> {
                 let idSelectsModificar = []
+                let seleccionados = []
                 const id = select.id
 
                 for(let e =1;e<i;e++){
-                  if(e!=id){
-                    idSelectsModificar.push(e)
-                  }
+                  const selectModificar = document.getElementById(e)
+                  const seleccionado = selectModificar.value
+                  seleccionados.push(seleccionado)
+                    if(e!=id){
+                     idSelectsModificar.push(e)
+                    }
                 }
               console.log(idSelectsModificar)
 
+              console.log(seleccionados)
               idSelectsModificar.forEach(idModificar => {
 
                 const selectModificar = document.getElementById(idModificar)
                 const seleccionado = selectModificar.value
                 console.log(seleccionado)
-                const optionsArray = Array.from(selectModificar.options)
                 selectModificar.innerHTML = ''
                 const defaultOption = document.createElement('option')
-                defaultOption.textContent = 'Selecciona un alumno'
-                defaultOption.disabled = true
+                defaultOption.textContent = 'Ninguno'
                 defaultOption.selected = true
                 selectModificar.appendChild(defaultOption)
                 
                 // Añadir nuevas opciones
-                optionsArray.forEach(dato => {
-                  if(dato.value != valor){
-                    if(!dato.disabled){
-                      const option = document.createElement('option')
-                      if(dato.value === seleccionado){
-                        option.selected = true
-                      }
-                      option.value = dato.value
-                      option.textContent = dato.text
-                      selectModificar.appendChild(option)
+                datosAlumnos.forEach(alumno => {
+                      if(!seleccionados.includes(alumno.nombre) || alumno.nombre === seleccionado){
+                          console.log(alumno.nombre)
+                          const option = document.createElement('option')
+                          if(alumno.nombre === seleccionado){
+                            option.selected = true
+                          }
+                          option.value = alumno.nombre
+                          option.textContent = alumno.nombre
+                          selectModificar.appendChild(option)
                     }
-                  }
                 })
               })
 
@@ -95,8 +95,6 @@ async function crearSelects(datosAlumnos,datosPruebas) {
 }
 
 
-async function actualizarSelects(nombreAlumno,idSelect,datosAlumnos,datosPruebas){
 
        
         
-}
