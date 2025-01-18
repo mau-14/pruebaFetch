@@ -1,46 +1,63 @@
-import C_verAlumnos from './controller/c_verAlumnos.js' 
-       let selectCurso = document.getElementById('Curso')
-       let div = document.getElementById('Principal')
+import C_verAlumnos from './controller/c_verAlumnos.js'
 
-       selectCurso.addEventListener('change',async (event)=>{
-         const informacion = new C_verAlumnos()
-         let datosAlumnos = await informacion.verAlumnos()
-         let datosPruebas = await informacion.verPruebas()
-         console.log(datosAlumnos)
-         console.log(datosPruebas)
-         
-         const fragment = document.createDocumentFragment()
-         datosPruebas.forEach(dato => {
-              const titulo = document.createElement('h3')
-              titulo.textContent = dato.nombre
-              fragment.appendChild(titulo)
+const selectCurso = document.getElementById('Curso')
+const div = document.getElementById('Principal')
 
-          const select = document.createElement('select')
-          const optionDefault = document.createElement('option')
-          optionDefault.textContent = 'Selecciona un alumno'
-          optionDefault.disabled = true
-          optionDefault.selected = true
-          select.appendChild(optionDefault)
-              datosAlumnos.forEach(dato => {
-                  const option = document.createElement('option')
-                  
-                  option.textContent = dato.nombre
-                  option.value = dato.nombre
-                  select.appendChild(option)
-              })
-              fragment.appendChild(select)
+selectCurso.addEventListener('change', async () => {
+    await crearSelects()
+})
 
-           select.addEventListener('change', (event)=>{
-           })
+async function crearSelects() {
+    try {
+        const informacion = new C_verAlumnos()
+        const [datosAlumnos, datosPruebas] = await Promise.all([
+            informacion.verAlumnos(),
+            informacion.verPruebas()
+        ])
 
-         })
+        console.log(datosAlumnos)
+        console.log(datosPruebas)
 
-         div.appendChild(fragment)
-        
-       })
+        div.innerHTML = ''
 
-         
+        const fragment = document.createDocumentFragment()
+
+        datosPruebas.forEach(prueba => {
+            const titulo = document.createElement('h3')
+            titulo.textContent = prueba.nombre
+            fragment.appendChild(titulo)
+
+            const select = document.createElement('select')
+
+            const optionDefault = document.createElement('option')
+            optionDefault.textContent = 'Selecciona un alumno'
+            optionDefault.disabled = true
+            optionDefault.selected = true
+            select.appendChild(optionDefault)
+
+            datosAlumnos.forEach(alumno => {
+                const option = document.createElement('option')
+                option.textContent = alumno.nombre
+                option.value = alumno.nombre
+                select.appendChild(option)
+            })
+
+            fragment.appendChild(select)
+
+            select.addEventListener('change', (event)=> {
+                const valor = select.value
+                actualizarSelects(valor)
+            })
+        })
+
+        div.appendChild(fragment)
+
+    } catch (error) {
+        console.error('Error al crear selects:', error)
+    }
+}
 
 
-
-    
+function actualizarSelects(nombreAlumno){
+  
+}
